@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain, remote} = require('electron')
 const express = require("express");
+const path = require('path');
 
 app.whenReady().then(() => {
 
@@ -7,13 +8,14 @@ app.whenReady().then(() => {
 
   var mainWindow = new BrowserWindow(
 
-    {width: 800, height: 600,webPreferences:{
+    {width: 1020, height: 600,webPreferences:{
 
-      nodeIntegration: true,
+      nodeIntegration: true      },
 
-      },
+  });
 
-  }); 
+  mainWindow.loadFile('index.html');
+
 
   ex.get("/whats/:num/:msg", async (req,res) => {
     var phone   = req.params.num;
