@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const { app, BrowserWindow, ipcMain, remote} = require('electron')
 const express = require("express");
 const { getPayerName, getCurrentMonth, getCurrentDay  } = require('./resources/js/helper');
@@ -24,7 +26,7 @@ app.whenReady().then(() => {
             let name = getPayerName(month);
 
             //Get Phone Number
-            ex.get("/whats/:num", async (req,res) => {
+            ex.get(`${process.env.APP_URL}whats/:num`, async (req,res) => {
                 var phone = req.params.num;
                 let defaultMassage = `Oie, ${name}%0aEu sou seu novo Bot de alerta de pagamento!🤖%0a%0aTô passando para te lembrar que você precisa realizar o pagamento de *R$ 55,90* da sua conta da Netflix.%0a%0aNão esquece de enviar o comprovante de pagamento no grupo 😉%0aAté a próxima!`;
 
@@ -33,6 +35,7 @@ app.whenReady().then(() => {
             });
         }
     })()
+    
 
     async function sendMessage(phone,defaultMassage){
     
@@ -63,10 +66,10 @@ app.whenReady().then(() => {
             `);
         });
     }
-
+    
 
     //listem port
-    ex.listen(3400);
+    ex.listen(process.env.PORT || 3400);
 
 
 });
