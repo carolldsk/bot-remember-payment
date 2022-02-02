@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const { app, BrowserWindow, ipcMain, remote} = require('electron')
+const { app, BrowserWindow } = require('electron')
 const express = require("express");
 const { getPayerName, getCurrentMonth, getCurrentDay  } = require('./resources/js/helper');
 const { dateRemember } = require('./resources/js/enum');

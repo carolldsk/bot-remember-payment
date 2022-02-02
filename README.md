@@ -14,9 +14,9 @@ To clone and run this repository you'll need [Git](https://git-scm.com) and [Nod
 
 ```bash
 # Clone this repository
-https://github.com/carolldsk/botRememberPayment.git
+git clone https://github.com/carolldsk/bot-remember-payment.git
 # Go into the repository
-cd electron-quick-start
+cd bot-remember-payment
 # Install dependencies
 npm install
 # Run the app
