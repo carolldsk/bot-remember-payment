@@ -1,10 +1,14 @@
-require('dotenv').config();
+const dotenv = require('dotenv');
+const express = require('express');
 
 const { app, BrowserWindow } = require('electron')
-const express = require("express");
 const { getPayerName, getCurrentMonth, getCurrentDay  } = require('./resources/js/helper');
 const { dateRemember } = require('./resources/js/enum');
+
+dotenv.config({ path: './.env' });
+
 const ex = express();
+  
 
 app.whenReady().then(() => {
 
@@ -18,24 +22,32 @@ app.whenReady().then(() => {
     // loading landing page
     mainWindow.loadFile('index.html');
 
+ 
     (() => {
         let date = getCurrentDay();
 
         if(dateRemember.includes(date)){
+
             let month = getCurrentMonth();
             let name = getPayerName(month);
-
+            
+            console.log("true"); 
             //Get Phone Number
-            ex.get(`${process.env.APP_URL}whats/:num`, async (req,res) => {
+            ex.get('/whats/:num', (req, res, next) => {
+            
+                console.log(phone);
+
                 var phone = req.params.num;
                 let defaultMassage = `Oie, ${name}%0aEu sou seu novo Bot de alerta de pagamento!🤖%0a%0aTô passando para te lembrar que você precisa realizar o pagamento de *R$ 55,90* da sua conta da Netflix.%0a%0aNão esquece de enviar o comprovante de pagamento no grupo 😉%0aAté a próxima!`;
 
                 sendMessage(phone,defaultMassage);
                 res.send("Sending a message by Whatsapp..")
             });
+            
         }
     })()
     
+
 
     async function sendMessage(phone,defaultMassage){
     
@@ -58,7 +70,7 @@ app.whenReady().then(() => {
                             sent = true;
                         
                         }else if(sent) {
-                            ${mainWindow.show()}
+                            ${mainWindow.hide()}
                             enviado = false;
                         }
                     }
@@ -66,10 +78,16 @@ app.whenReady().then(() => {
             `);
         });
     }
+
     
+    //landing page
+    ex.get('/',function(req,res) {
+        ex.use(express.static(__dirname));
+        res.sendFile(__dirname + "/index.html");
+    });
+
 
     //listem port
     ex.listen(process.env.PORT || 3400);
-
 
 });

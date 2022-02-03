@@ -14,6 +14,6 @@ const months =[
     "December"
 ]
 
-const dateRemember = [5,15,20,1];
+const dateRemember = [5,15,20,2];
 
 module.exports = { months, dateRemember};
