@@ -70,7 +70,7 @@ app.whenReady().then(() => {
                             sent = true;
                         
                         }else if(sent) {
-                            ${mainWindow.hide()}
+                            ${mainWindow.show()}
                             enviado = false;
                         }
                     }
