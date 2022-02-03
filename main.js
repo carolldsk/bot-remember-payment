@@ -30,8 +30,8 @@ app.whenReady().then(() => {
 
             let month = getCurrentMonth();
             let name = getPayerName(month);
-            
-            console.log("true"); 
+
+            /*
             //Get Phone Number
             ex.get('/whats/:num', (req, res, next) => {
             
@@ -40,9 +40,19 @@ app.whenReady().then(() => {
                 var phone = req.params.num;
                 let defaultMassage = `Oie, ${name}%0aEu sou seu novo Bot de alerta de pagamento!🤖%0a%0aTô passando para te lembrar que você precisa realizar o pagamento de *R$ 55,90* da sua conta da Netflix.%0a%0aNão esquece de enviar o comprovante de pagamento no grupo 😉%0aAté a próxima!`;
 
-                sendMessage(phone,defaultMassage);
                 res.send("Sending a message by Whatsapp..")
+                sendMessage(phone,defaultMassage);
             });
+
+            */
+
+
+           
+           var phone = 12121212;
+           let defaultMassage = `Oie, ${name}%0aEu sou seu novo Bot de alerta de pagamento!🤖%0a%0aTô passando para te lembrar que você precisa realizar o pagamento de *R$ 55,90* da sua conta da Netflix.%0a%0aNão esquece de enviar o comprovante de pagamento no grupo 😉%0aAté a próxima!`;
+           
+           console.log(phone);
+           sendMessage(phone,defaultMassage);
             
         }
     })()
@@ -70,7 +80,7 @@ app.whenReady().then(() => {
                             sent = true;
                         
                         }else if(sent) {
-                            ${mainWindow.show()}
+                            ${mainWindow.hide()}
                             enviado = false;
                         }
                     }
@@ -79,7 +89,7 @@ app.whenReady().then(() => {
         });
     }
 
-    
+    /*
     //landing page
     ex.get('/',function(req,res) {
         ex.use(express.static(__dirname));
@@ -90,5 +100,7 @@ app.whenReady().then(() => {
     ex.listen(process.env.PORT || 3400, function(){
         console.log("Express server listening on port %d in %s mode", this.address().port, ex.settings.env);
     });
+
+    */
 
 });
