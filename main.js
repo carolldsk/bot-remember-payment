@@ -86,8 +86,9 @@ app.whenReady().then(() => {
         res.sendFile(__dirname + "/index.html");
     });
 
-
     //listem port
-    ex.listen(process.env.PORT || 3400);
+    ex.listen(process.env.PORT || 3400, function(){
+        console.log("Express server listening on port %d in %s mode", this.address().port, ex.settings.env);
+    });
 
 });
